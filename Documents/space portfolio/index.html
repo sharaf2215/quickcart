@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Loopers | Squad 139 Scroll Journey</title>
+    <meta name="description" content="A scroll-based journey through the Squad 139 universe.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@300;500;700&family=Fira+Code:wght@400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+
+    <!-- High-Fidelity Neural Interface Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-visual">
+            <div class="loader-ring outer"></div>
+            <div class="loader-ring inner"></div>
+            <div class="loader-core"></div>
+        </div>
+        <div class="loader-text">
+            <div class="status-main">SYSTEM_BOOT_SEQUENCE</div>
+            <div class="status-sub">ESTABLISHING NEURAL UPLINK... [99.8%]</div>
+        </div>
+    </div>
+
+    <!-- Scroll Content Wrapper (Controls the scroll length) -->
+    <div id="scroll-content">
+        <!-- Sections for ScrollTrigger to latch onto -->
+        <section id="trigger-start" class="scroll-trigger"></section>
+
+        <!-- Mentors: 4 Planets -->
+        <section id="trigger-mentor-1" class="scroll-trigger"></section>
+        <section id="trigger-mentor-2" class="scroll-trigger"></section>
+        <section id="trigger-mentor-3" class="scroll-trigger"></section>
+        <section id="trigger-mentor-4" class="scroll-trigger"></section>
+
+        <!-- Community: Sun + 3 Branch Sets -->
+        <section id="trigger-sun-approach" class="scroll-trigger"></section>
+        <section id="trigger-sun-1" class="scroll-trigger"></section>
+        <section id="trigger-sun-2" class="scroll-trigger"></section>
+        <section id="trigger-sun-3" class="scroll-trigger"></section>
+
+        <!-- Core: 3 Galaxies -->
+        <section id="trigger-core-transition" class="scroll-trigger"></section>
+        <section id="trigger-core-1" class="scroll-trigger"></section>
+        <section id="trigger-core-2" class="scroll-trigger"></section>
+        <section id="trigger-core-3" class="scroll-trigger"></section>
+        <section id="trigger-core-4" class="scroll-trigger"></section>
+
+        <section id="trigger-final" class="scroll-trigger"></section>
+    </div>
+
+    <!-- UI Overlay Layer (Fixed positioning) -->
+    <main id="ui-layer">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="nav-links">
+                <a href="#" data-target="mentor1" class="nav-link">MENTOR</a>
+                <a href="#" data-target="sunArrival" class="nav-link">FOLKS</a>
+                <a href="#" data-target="galaxyEntrance" class="nav-link">TEAM</a>
+            </div>
+        </nav>
+
+
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="intro-group">
+                <p class="explore-text">EXPLORE</p>
+                <h1 class="main-title">SQUAD 139</h1>
+                <p class="protocol-text">// INFINITY LOOPERS PROTOCOL</p>
+                <button id="enter-btn" class="initiate-btn">
+                    <span class="btn-text">INITIATE SEQUENCE</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mentor Panels (Dynamic content populated via JS or hardcoded hidden) -->
+        <div id="mentor-panel" class="hud-panel hidden">
+            <!-- Professional Cyber Accents -->
+            <div class="panel-corner tl"></div>
+            <div class="panel-corner tr"></div>
+            <div class="panel-corner bl"></div>
+            <div class="panel-corner br"></div>
+
+            <div class="hud-content">
+                <div class="hud-header">
+                    <div class="status-indicator">
+                        <span class="status-dot-blink"></span>
+                        IDENTIFIED: SQUAD_MENTOR_RECORD
+                    </div>
+                </div>
+
+                <div class="mentor-layout">
+                    <div class="mentor-photo">
+                        <!-- Image inserted via CSS/JS -->
+                    </div>
+                    <div class="mentor-info">
+                        <h2 id="mentor-name">MENTOR NAME</h2>
+                        <p id="mentor-role">// Principal Architect</p>
+                    </div>
+                </div>
+
+                <div class="data-stream-container">
+                    <div class="data-label">BIOMETRIC_DATA_CORE</div>
+                    <p id="mentor-desc">Expert in distributed systems and galactic scaling.</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-link linkedin" id="mentor-linkedin" target="_blank" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                            <path
+                                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link github" id="mentor-github" target="_blank" title="GitHub">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link email" id="mentor-email" target="_blank" title="Email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Lead Panels: One per member, minimal cinematic style -->
+        <div id="core-panel-1" class="core-passage-panel" data-color="#00f2ff">
+            <div class="passage-inner">
+                <div class="passage-photo-side">
+                    <div class="cyber-frame">
+                        <div class="frame-corner tl"></div>
+                        <div class="frame-corner tr"></div>
+                        <div class="frame-corner bl"></div>
+                        <div class="frame-corner br"></div>
+                        <div class="scan-line"></div>
+                        <img src="assets/core1.jpg" alt="Mohamed Sharaf" class="core-img"
+                            onerror="this.src='https://ui-avatars.com/api/?name=MS&background=00f2ff&color=000'">
+                    </div>
+                    <div class="technical-meta">
+                        <span>SCAN_ID: S139_MS_22</span>
+                        <span>STATUS: ACTIVE_ELITE</span>
+                    </div>
+                </div>
+                <div class="passage-content-side">
+                    <div class="passage-label">// GALACTIC PASSAGE ONE</div>
+                    <h2 class="passage-name" id="core-name-1">Mohamed Sharaf</h2>
+                    <div class="passage-divider"></div>
+                    <p class="passage-bio" id="core-bio-1">I’m a curious builder who loves turning ideas into systems
+                        that actually work. I enjoy working at the intersection of design, logic, and experience, where
+                        small details make a big difference.<br><br>As part of Infinity Loopers (Squad 139), I focus on
+                        understanding problems deeply and building solutions that feel intuitive, scalable, and
+                        purposeful.</p>
+
+                    <div class="passage-actions">
+                        <a href="https://github.com/sharaf2215" class="passage-btn" target="_blank">
+                            <span class="btn-text">VIEW GITHUB</span>
+                            <span class="btn-arrow">→</span>
+                        </a>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/sharaf22/" class="social-link linkedin" target="_blank"
+                                title="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                                    <path
+                                        d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z" />
+                                </svg>
+                            </a>
+                            <a href="mailto:mohamed.sharaf.s.@kalvium.community" class="social-link email"
+                                target="_blank" title="Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="core-panel-2" class="core-passage-panel alternate" data-color="#9b59b6">
+            <div class="passage-inner">
+                <div class="passage-content-side">
+                    <div class="passage-label">// GALACTIC PASSAGE TWO</div>
+                    <h2 class="passage-name" id="core-name-2">Imran</h2>
+                    <div class="passage-divider"></div>
+                    <p class="passage-bio" id="core-bio-2">I see every project as a journey — from chaos to clarity. I
+                        enjoy exploring problems, breaking them down, and building systems that feel simple on the
+                        surface but strong underneath.<br><br>Being part of Infinity Loopers has shaped the way I
+                        collaborate, think, and grow.</p>
+
+                    <div class="passage-actions">
+                        <a href="https://github.com/dheena017" class="passage-btn" target="_blank">
+                            <span class="btn-text">VIEW GITHUB</span>
+                            <span class="btn-arrow">→</span>
+                        </a>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/imran-s-44b8a53ab/" class="social-link linkedin"
+                                target="_blank" title="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                                    <path
+                                        d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z" />
+                                </svg>
+                            </a>
+                            <a href="mailto:imran.s.139@kalvium.community" class="social-link email" target="_blank"
+                                title="Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="passage-photo-side">
+                    <div class="cyber-frame">
+                        <div class="frame-corner tl"></div>
+                        <div class="frame-corner tr"></div>
+                        <div class="frame-corner bl"></div>
+                        <div class="frame-corner br"></div>
+                        <div class="scan-line"></div>
+                        <img src="assets/core2.jpg" alt="Imran" class="core-img"
+                            onerror="this.src='https://ui-avatars.com/api/?name=I&background=9b59b6&color=000'">
+                    </div>
+                    <div class="technical-meta">
+                        <span>SCAN_ID: S139_IM_22</span>
+                        <span>STATUS: ACTIVE_ELITE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="core-panel-3" class="core-passage-panel" data-color="#ffaa00">
+            <div class="passage-inner">
+                <div class="passage-photo-side">
+                    <div class="cyber-frame">
+                        <div class="frame-corner tl"></div>
+                        <div class="frame-corner tr"></div>
+                        <div class="frame-corner bl"></div>
+                        <div class="frame-corner br"></div>
+                        <div class="scan-line"></div>
+                        <img src="assets/core3.jpg" alt="Dheenadayalan" class="core-img"
+                            onerror="this.src='https://ui-avatars.com/api/?name=D&background=ffaa00&color=000'">
+                    </div>
+                    <div class="technical-meta">
+                        <span>SCAN_ID: S139_DH_22</span>
+                        <span>STATUS: ACTIVE_ELITE</span>
+                    </div>
+                </div>
+                <div class="passage-content-side">
+                    <div class="passage-label">// FINAL GALACTIC PASSAGE</div>
+                    <h2 class="passage-name" id="core-name-3">Dheenadayalan</h2>
+                    <div class="passage-divider"></div>
+                    <p class="passage-bio" id="core-bio-3">A builder driven by curiosity and purpose. I enjoy designing
+                        and developing systems that are clean, thoughtful, and impactful.<br><br>As a member of Infinity
+                        Loopers (Squad 139), I believe growth comes from exploration, teamwork, and continuous learning.
+                    </p>
+
+                    <div class="passage-actions">
+                        <a href="https://github.com/dheena017" class="passage-btn" target="_blank">
+                            <span class="btn-text">VIEW GITHUB</span>
+                            <span class="btn-arrow">→</span>
+                        </a>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/dheenadayalan-r-206446383/"
+                                class="social-link linkedin" target="_blank" title="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                                    <path
+                                        d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z" />
+                                </svg>
+                            </a>
+                            <a href="mailto:dheenadayalan.r.s.139@kalvium.community" class="social-link email"
+                                target="_blank" title="Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="core-panel-4" class="core-passage-panel alternate" data-color="#2ecc71">
+            <div class="passage-inner">
+                <div class="passage-content-side">
+                    <div class="passage-label">// INFINITY PASSAGE</div>
+                    <h2 class="passage-name" id="core-name-4">Nayeem Sajjath</h2>
+                    <div class="passage-divider"></div>
+                    <p class="passage-bio" id="core-bio-4">I’m someone who enjoys building things that feel meaningful,
+                        not just functional. I like exploring ideas, understanding how systems work, and turning
+                        concepts into experiences that are clear and engaging.<br><br>As part of Infinity Loopers (Squad
+                        139), I believe growth comes from curiosity, collaboration, and consistency.</p>
+
+                    <div class="passage-actions">
+                        <a href="https://github.com/dheena017" class="passage-btn" target="_blank">
+                            <span class="btn-text">VIEW GITHUB</span>
+                            <span class="btn-arrow">→</span>
+                        </a>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/nayeem-sajjath-m-9ab253396/"
+                                class="social-link linkedin" target="_blank" title="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                                    <path
+                                        d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z" />
+                                </svg>
+                            </a>
+                            <a href="mailto:nayeem.sajjath.m.139@kalvium.community" class="social-link email"
+                                target="_blank" title="Email">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="social-icon">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="passage-photo-side">
+                    <div class="cyber-frame">
+                        <div class="frame-corner tl"></div>
+                        <div class="frame-corner tr"></div>
+                        <div class="frame-corner bl"></div>
+                        <div class="frame-corner br"></div>
+                        <div class="scan-line"></div>
+                        <img src="assets/core4.jpg" alt="Nayeem Sajjath" class="core-img"
+                            onerror="this.src='https://ui-avatars.com/api/?name=NS&background=2ecc71&color=000'">
+                    </div>
+                    <div class="technical-meta">
+                        <span>SCAN_ID: S139_NS_22</span>
+                        <span>STATUS: ACTIVE_ELITE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="student-profile-modal" class="student-modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-container">
+                <div class="modal-corner tl"></div>
+                <div class="modal-corner tr"></div>
+                <div class="modal-corner bl"></div>
+                <div class="modal-corner br"></div>
+
+                <button id="modal-close" class="modal-close-btn">&times;</button>
+
+                <div class="modal-layout">
+                    <div class="modal-photo-container">
+                        <div class="photo-glow"></div>
+                        <img id="modal-student-img" src="" alt="Student Profile">
+                    </div>
+                    <div class="modal-info">
+                        <p class="id-tag">ID_SQUAD_MEMBER</p>
+                        <h2 id="modal-student-name">STUDENT NAME</h2>
+                        <p class="squad-tag">// SQUAD 139 | KALVIUM</p>
+                        <div class="modal-divider"></div>
+                        <p id="modal-student-desc">Passionate developer exploring the frontiers of technology and
+                            contributing to the Squad 139 cosmic journey.</p>
+
+                        <div class="modal-actions">
+                            <a href="#" class="modal-btn">VIEW PORTFOLIO</a>
+                            <a href="#" class="modal-btn ghost">LINKEDIN</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="final-signature" style="opacity: 0;">
+            <div class="finale-group">
+                <p class="finale-mission">// MISSION COMPLETE</p>
+                <h1 class="finale-title">KALVIUM</h1>
+                <p class="finale-squad">INFINITY LOOPERS | SQUAD 139</p>
+                <div class="finale-line"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Load Three.js and GSAP -->
+    <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://esm.sh/three@0.160.0",
+            "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/",
+            "gsap": "https://esm.sh/gsap@3.12.5",
+            "gsap/ScrollTrigger": "https://esm.sh/gsap@3.12.5/ScrollTrigger",
+            "gsap/ScrollToPlugin": "https://esm.sh/gsap@3.12.5/ScrollToPlugin"
+        }
+    }
+    </script>
+    <script type="module" src="main.js"></script>
+    <script>
+        // SYSTEM BOOT SCRIPT
+        // Capture Console Errors to Terminal
+        const originalError = console.error;
+        const originalLog = console.log;
+
+        window.onerror = function (msg, url, line) {
+            const term = document.getElementById('terminal-lines');
+            if (term) {
+                term.innerHTML += `<p style="color:#ff5f56; margin-top:10px;">> FATAL_ERR: ${msg}</p>`;
+            }
+        };
+
+        console.error = function (...args) {
+            const term = document.getElementById('terminal-lines');
+            if (term) {
+                term.innerHTML += `<p style="color:#ff5f56">> ERR: ${args.join(' ')}</p>`;
+            }
+            originalError.apply(console, args);
+        };
+
+        console.log = function (...args) {
+            // Optional: Show system logs if relevant
+            const term = document.getElementById('terminal-lines');
+            if (term && args[0] && typeof args[0] === 'string' && args[0].startsWith("System:")) {
+                term.innerHTML += `<p style="color:#4affb0">> ${args[0]}</p>`;
+            }
+            originalLog.apply(console, args);
+        };
+
+        (function () {
+            // Animate Text
+            const lines = document.querySelectorAll('#terminal-lines p');
+            lines.forEach((line, i) => {
+                line.style.opacity = '0';
+                line.style.animation = `typeWriter 0.5s forwards ${i * 0.8}s`;
+            });
+
+            // Add Animation Styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes typeWriter { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+            `;
+            document.head.appendChild(style);
+
+            // Safety Removal
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                if (loader) {
+                    loader.style.transition = "opacity 0.8s ease-out";
+                    loader.style.opacity = "0";
+                    loader.style.pointerEvents = "none";
+                    setTimeout(() => {
+                        if (loader.parentNode) loader.remove();
+                    }, 800);
+                }
+            }, 5000); // Increased safety margin
+        })();
+    </script>
+</body>
+
+</html>
