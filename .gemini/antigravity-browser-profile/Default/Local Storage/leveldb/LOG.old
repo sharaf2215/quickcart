@@ -1,0 +1,9 @@
+2025/12/30-00:09:54.169 57e0 Reusing MANIFEST C:\Users\shara\.gemini\antigravity-browser-profile\Default\Local Storage\leveldb/MANIFEST-000001
+2025/12/30-00:09:54.177 57e0 Recovering log #3
+2025/12/30-00:09:54.186 57e0 Reusing old log C:\Users\shara\.gemini\antigravity-browser-profile\Default\Local Storage\leveldb/000003.log 
+2025/12/30-00:23:42.902 4dd4 Level-0 table #5: started
+2025/12/30-00:23:42.911 4dd4 Level-0 table #5: 50308 bytes OK
+2025/12/30-00:23:42.918 4dd4 Delete type=0 #3
+2025/12/30-00:24:31.380 57e0 Level-0 table #7: started
+2025/12/30-00:24:31.391 57e0 Level-0 table #7: 49889 bytes OK
+2025/12/30-00:24:31.398 57e0 Delete type=0 #4

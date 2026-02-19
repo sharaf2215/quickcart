@@ -1,0 +1,29 @@
+# Galactic Journey Implementation Plan
+
+## Goal Description
+Transform the portfolio into a single continuous cosmic journey where the user travels through space to discover content. The experience should be seamless, cinematic, and immersive, replacing standard web sections with 3D celestial destinations.
+
+## User Review Required
+> [!IMPORTANT]
+> **Performance**: The usage of multiple particle systems (Galaxies, Starfield) and large textures may impact performance on lower-end devices. We will monitor frame rates.
+> **Navigation**: The "Scroll = Move" mechanic is the primary navigation. There is no traditional navbar.
+
+## Proposed Changes
+
+### Logic Layer (`main.js`)
+#### [MODIFY] [main.js](file:///c:/Users/shara/Documents/space%20portfolio/main.js)
+- **Fix Syntax**: Resolve missing semicolons and variable declarations flagged by the linter.
+- **Refine `createCinematicGalaxy`**: Ensure it correctly handles the `rotSpeed` and material properties to prevent animation loop errors.
+- **Tune `setupScrollSystem`**: Adjust GSAP timings to ensure text reading time is sufficient and transitions are not too abrupt.
+- **Optimize Animation Loop**: Ensure we aren't iterating over undefined arrays.
+
+### UI Layer (`index.html`, `style.css`)
+- **[DONE]** Added social links to panels.
+- **[PENDING]** micro-adjustments to panel positioning if they overlap with 3D objects.
+
+## Verification Plan
+
+### Manual Verification
+- **Scroll Test**: Scroll from top to bottom ensuring no "jumps" or empty voids.
+- **Visual Check**: Verify Mentors appear inside their galaxies and Core Members rise correctly.
+- **Console Check**: Ensure no `undefined` errors in the DevTools console.

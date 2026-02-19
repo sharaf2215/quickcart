@@ -1,0 +1,24 @@
+# Galactic Journey Portfolio Overhaul
+
+- [x] **Core Scene Setup**
+    - [x] Starfield & Nebula background
+    - [x] Earth (Start Node)
+    - [x] Sun & Students (Community Node)
+    - [x] Core Galaxies (3 Main Passages)
+- [/] **Mentor Section Refinement**
+    - [x] Replace Planets with Mini-Galaxies
+    - [x] Implement Photo Planes for Mentors
+    - [x] Add Social Links to Mentor UI
+    - [ ] Verify animation transitions for Mentors
+- [/] **Scroll Animation System**
+    - [x] Implement GSAP ScrollTrigger timeline
+    - [x] Define camera paths for all sections
+    - [ ] Fine-tune timing and easing for "Cinematic" feel
+    - [ ] Fix any visual glitches during transitions
+- [/] **Code Cleanup & Optimization**
+    - [ ] Fix lint errors in [main.js](file:///c:/Users/shara/Documents/space%20portfolio/main.js) (missing semicolons, variable declarations)
+    - [ ] Ensure [createCinematicGalaxy](file:///c:/Users/shara/Documents/space%20portfolio/main.js#440-529) is robust
+    - [ ] Optimize texture loading
+- [ ] **Final Polish**
+    - [ ] Verify mobile responsiveness
+    - [ ] Add loading state handling
